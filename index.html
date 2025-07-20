@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Владислава и Кирилл</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      background: white;
+      text-align: center;
+      color: #333;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      font-family: 'Quicksand', sans-serif;
+    }
+    .main-photo {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .music-button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background: #f4f4f4;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #eee;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    input, select, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button[type="submit"] {
+      background: #333;
+      color: white;
+      cursor: pointer;
+    }
+    .details {
+      margin-top: 30px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <img src="main.jpg" alt="Фото пары" class="main-photo" />
+
+  <!-- Кнопка воспроизведения музыки -->
+  <audio id="weddingSong" src="song.mp3"></audio>
+  <button class="music-button" onclick="toggleMusic()">▶ Воспроизвести музыку</button>
+
+  <h1>Владислава & Кирилл</h1>
+  <h2>16 августа 2025</h2>
+
+  <!-- Таймер -->
+  <div class="countdown">
+    <div class="circle"><div id="days">00</div><div>дней</div></div>
+    <div class="circle"><div id="hours">00</div><div>часов</div></div>
+    <div class="circle"><div id="minutes">00</div><div>минут</div></div>
+    <div class="circle"><div id="seconds">00</div><div>секунд</div></div>
+  </div>
+
+  <p>Сегодня хороший день, чтобы просто жениться</p>
+  <p>Мы рады пригласить вас на нашу свадьбу!</p>
+
+  <h2>Место проведения</h2>
+  <p>Арт-Холл | Гостиничный комплекс Брянск</p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2305.022334268399!2d34.4633197!3d53.2071638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x412d5f11c743ef15%3A0x337f6ea22987bfeb!2z0JDQstGC0L7QstC40YfQtdC90YI!5e0!3m2!1sru!2sru!4v1721400000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  <!-- RSVP форма -->
+  <form id="rsvp-form">
+    <input type="text" id="name" placeholder="Ваше имя" required />
+    <select id="attendance" required>
+      <option value="">Вы придете?</option>
+      <option value="Да">Да</option>
+      <option value="Нет">Нет</option>
+    </select>
+    <button type="submit">Отправить</button>
+  </form>
+
+  <p class="details">
+    Мы будем счастливы получить вклад в семейный бюджет в качестве подарка. Это определенно поможет нам реализовать нашу мечту.
+  </p>
+
+  <script>
+    // Таймер
+    const targetDate = new Date("2025-08-16T00:00:00");
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    };
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Музыка
+    const audio = document.getElementById("weddingSong");
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        event.target.textContent = "⏸ Остановить музыку";
+      } else {
+        audio.pause();
+        event.target.textContent = "▶ Воспроизвести музыку";
+      }
+    }
+
+    // Отправка формы в Telegram
+    document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const answer = document.getElementById("attendance").value;
+      const message = `📩 Новая заявка:
+👤 Имя: ${name}
+📅 Придёт: ${answer}`;
+
+      fetch("https://api.telegram.org/botYOUR_TOKEN/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: "YOUR_CHAT_ID",
+          text: message
+        })
+      }).then(response => {
+        if (response.ok) {
+          alert("Спасибо! Заявка отправлена.");
+        } else {
+          alert("Ошибка отправки. Попробуйте позже.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
