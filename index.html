@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Владислава и Кирилл</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+  <!-- Подключаем Quicksand с весами 400, 500 и 700, а также Merriweather -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     .date-style {
       font-family: 'Quicksand', sans-serif;
-      font-weight: normal;
+      font-weight: 700; /* жирный */
     }
 
     body {
@@ -133,7 +134,7 @@
 
   <p class="date-style">Сегодня хороший день, чтобы просто жениться</p>
   <p class="date-style">
-    <strong>Дорогие гости!</strong><br>
+    Дорогие гости!<br>
     В этом году один день станет для нас особенно значимым.<br>
     Мы планируем отметить его в компании родных и друзей.<br>
     С радостью приглашаем вас на важное событие — нашу свадьбу!
@@ -206,7 +207,9 @@
       e.preventDefault();
       const name = document.getElementById("name").value;
       const answer = document.getElementById("attendance").value;
-      const message = `📩 Новая заявка:\n👤 Имя: ${name}\n📅 Придёт: ${answer}`;
+      const message = `📩 Новая заявка:
+👤 Имя: ${name}
+📅 Придёт: ${answer}`;
 
       fetch("https://api.telegram.org/botYOUR_TOKEN/sendMessage", {
         method: "POST",
