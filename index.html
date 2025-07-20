@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Владислава и Кирилл</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@500&display=swap" rel="stylesheet" />
-  <style>.date-style {
-  font-family: 'Quicksand', sans-serif;
-}
+  <style>
+    .date-style {
+      font-family: 'Quicksand', sans-serif;
+    }
 
     body {
       margin: 0;
@@ -116,7 +117,7 @@
 
   <!-- Кнопка воспроизведения музыки -->
   <audio id="weddingSong" src="song.mp3"></audio>
-  <button class="music-button" onclick="toggleMusic()">▶ Воспроизвести музыку</button>
+  <button class="music-button" onclick="toggleMusic(event)">▶ Воспроизвести музыку</button>
 
   <h1>Владислава & Кирилл</h1>
   <h2>16 августа 2025</h2>
@@ -129,9 +130,10 @@
     <div class="circle"><div id="seconds">00</div><div>секунд</div></div>
   </div>
 
- <p class="date-style">Сегодня хороший день, чтобы просто жениться</p>
-<p class="date-style">Дорогие гости
-В этом году один день станет для нас особенно значимым. Мы планируем отметить его в компании родных и друзей. С радостью приглашаем вас на важное событие — нашу свадьбу!</p>
+  <p class="date-style">Сегодня хороший день, чтобы просто жениться</p>
+  <p class="date-style">Дорогие гости
+    В этом году один день станет для нас особенно значимым. Мы планируем отметить его в компании родных и друзей. С радостью приглашаем вас на важное событие — нашу свадьбу!
+  </p>
 
   <h2>Место проведения</h2>
   <p>Арт-Холл | Гостиничный комплекс Брянск</p>
@@ -219,10 +221,6 @@
         }
       });
     });
-  </script>
-</body>
-</html>
-
   </script>
 </body>
 </html>
